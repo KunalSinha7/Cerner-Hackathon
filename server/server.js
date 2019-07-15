@@ -1,6 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const api = require("./api/api");
+const mongoose = require('mongoose');
 // const cors = require("cors");
 
 const app = express();
@@ -28,7 +29,12 @@ app.use(function(req, res, next) {
   }
 });
 
-const port = process.env.port || 8080;
-app.listen(port, () => {
-  console.log(`Server started on port`, port);
-});
+const connectDB=() => {
+  return mongoose.connect('mongodb+srv://admin:admin@dev-laa9e.mongodb.net/test?retryWrites=true&w=majority');
+}
+connectDB().then(async () => {
+  const port = process.env.port || 5000;
+  app.listen(port, () => {
+    console.log(`Server started on port`, port);
+  });
+})
