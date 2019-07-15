@@ -1,7 +1,6 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const api = require("./api/api");
-// const cors = require("cors");
 
 const app = express();
 // app.use(cors);
@@ -28,7 +27,7 @@ app.use(function(req, res, next) {
   }
 });
 
-const port = process.env.port || 8080;
+const port = process.env.port || 5000;
 app.listen(port, () => {
   console.log(`Server started on port`, port);
 });
