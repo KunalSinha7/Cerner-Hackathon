@@ -1,9 +1,10 @@
+const express = require("express");
+const axios = require("axios");
+const mongoose = require('mongoose');
+const router = express.Router();
 
-// const MongoClient = require('mongodb').MongoClient;
-// const uri = "mongodb+srv://admin:admin@dev-laa9e.mongodb.net/test?retryWrites=true&w=majority";
-// const client = new MongoClient(uri, { useNewUrlParser: true });
-// client.connect(err => {
-//   const collection = client.db("test").collection("devices");
-//   // perform actions on the collection object
-//   client.close();
-// });
+router.get("/", (req, res) => {
+  res.send("Routes that use Mongo");
+});
+
+module.exports = router;
