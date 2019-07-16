@@ -2,10 +2,10 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const api = require("./api/api");
 const mongoose = require('mongoose');
-const cors = require("cors");
+//const cors = require("cors");
 
 const app = express();
-app.use(cors);
+//app.use(cors);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -45,4 +45,4 @@ connectDB().then(async () => {
     });
 }).catch((err) => {
     console.log(err);
-})
+});

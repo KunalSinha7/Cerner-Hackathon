@@ -3,6 +3,7 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 const UserSchema = new Schema({
+    _id : { type: Schema.Types.ObjectId },
     user_id : { type: Number, required: true },
     songs : [{
       song_id : { type: Number, required: true },
