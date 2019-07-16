@@ -1,69 +1,54 @@
 import React from 'react';
 import RatingDropdown from './RatingDropdown';
+import Modal from './Modals';
 import Login from "./Login.js";
 import history from "../history.js";
+import axios from 'axios';
+
+const modalHeader = (
+  <h5>Find a Song</h5>
+);
+
+const modalBody = (
+  <div className="form-group">
+    <input className="form-control" placeholder="Enter Song Title"/>
+  </div>
+);
 
 export default class SongList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       owner: true,
-      songList: [
-        {
-          name: 'End of The Road',
-          artist: 'Juice Wrld',
-          rating: 4
-        },
-        {
-          name: '2MUCH',
-          artist: 'Alter.',
-          rating: 2
-        },
-        {
-          name: 'You Reposted in the Wrong Neighborhood',
-          artist: 'Shokk',
-          rating: 5
-        },
-        {
-          name: 'Send Me on My Way',
-          artist: 'Rusted Root',
-          rating: 2
-        }, {
-          name: 'Bangarang',
-          artist: 'Skrillex',
-          rating: 3
-        },
-        {
-          name: 'Tijuana Sunrise',
-          artist: 'Goldfinger',
-          rating: 5
-        }, {
-          name: 'Feels Like Summer',
-          artist: 'Weezer',
-          rating: 5
-        },
-        {
-          name: 'Happy Hour',
-          artist: 'Weezer',
-          rating: 5
-        },
-      ],
+      spotifyToken: props.match.params.authToken,
+      spotifyId: props.match.params.userId,
+      playlistId: props.match.params.playlistId,
+      songList: [],
       total: 0
     }
   }
 
   componentDidMount = () => {
-      // if (Login.auth === undefined)
-      // {
-      //     history.push("/");
-      // }
-      // console.log(Login.info.auth);
-      // console.log(Login.info.playlists);
-      // axios.post("http://localhost:5000/api/v1/spotify/getSongs/", {
-      //     spotifyToken: Login.auth,
-      //     playlistId: ,
-      //     spotifyId:
-      // });
+      axios.post("http://localhost:5000/api/v1/spotify/getSongs/", {
+          spotifyToken: this.state.spotifyToken,
+          playlistId: this.state.playlistId,
+          spotifyId: this.state.spotifyId
+      }).then((res) => {
+        res.data.forEach((element) => {
+          let addedBy = element.added_by.href;
+          if(addedBy) {
+            axios.get(addedBy,{
+              headers: {
+                Authorization: "Bearer " + this.state.spotifyToken
+              }
+            }).then((resp) => {
+              element["addedByDisplayName"] = resp.data.display_name;
+              this.setState({songList: res.data});
+
+            }).catch((err) => console.log("Err", err));
+          }
+        });
+      });
   };
 
   getTotal() {
@@ -84,10 +69,6 @@ export default class SongList extends React.Component {
     return rating;
   }
 
-  // handleClick = () => {
-  //   this.state.songList;
-  // }
-
   updateRating = (index,val) => {
     let songList2 = this.state.songList;
     songList2[index].rating = parseInt(val);
@@ -97,11 +78,52 @@ export default class SongList extends React.Component {
   };
 
   render() {
+    let arr = [];
+    if (this.state.songList.length >= 0) {
+      this.state.songList.map((val, index) => {
+        arr.push(
+          (
+            <tr key={index} className="d-flex flex-row">
+              <td className="song-list-item d-flex container justify-content-center">
+                <p>{val.track.name}</p>
+              </td>
+              <td className="song-list-item d-flex container justify-content-center">
+                <p>{val.track.artists[0].name}</p>
+              </td>
+              <td className="song-list-item d-flex container justify-content-center">
+                <p>{val.addedByDisplayName}</p>
+              </td>
+              <td className="song-list-item d-flex container justify-content-center">
+                <p>{this.getRating(index)}</p>
+              </td>
+            </tr>
+          )
+        )
+      });
+    }
     return (
       <div>
         <div className="row">
-          <div className="d-flex container col-1 justify-content-center">
+          <div className="col-2">
+
+          </div>
+          <div className="col-3 rating-text d-flex container justify-content-center">
+            <div className="d-flex container justify-content-start">
+              <p className="mt-5 mb-5 ml-5 mr-2"> Song Count: {this.state.songList.length} </p>
+              <button className="table-button rounded-pill fa fa-plus mt-5 mb-5" data-toggle="modal" data-target="#searchModal"/>
+            </div>
+          </div>
+          <div className="d-flex container col-2 justify-content-center">
             <h1 className="playlist-header mr-2">Playlist</h1>
+          </div>
+          <div className="col-3 rating-text d-flex container justify-content-center">
+            <div className="d-flex container justify-content-end">
+              <p className="mt-5 mb-5 mr-2">Total Rating: {this.state.total}</p>
+              <button type="submit" className="table-button rounded-pill fa fa-paper-plane mt-5 mb-5 mr-5"/>
+            </div>
+          </div>
+          <div className="col-2">
+
           </div>
         </div>
         <div className="row">
@@ -114,23 +136,14 @@ export default class SongList extends React.Component {
                 <tr className="d-flex flex-row">
                   <th scope="col" className="table-sub d-flex container justify-content-center">Song</th>
                   <th scope="col" className="table-sub d-flex container justify-content-center">Artist</th>
+                  <th scope="col" className="table-sub d-flex container justify-content-center">Added By</th>
                   <th scope="col" className="table-sub d-flex container justify-content-center">Rating</th>
                 </tr>
               </thead>
               <tbody>
-              {this.state.songList.map((val, index) => (
-                <tr key={index} className="d-flex flex-row">
-                  <td className="song-list-item d-flex container justify-content-center">
-                    <p>{val.name}</p>
-                  </td>
-                  <td className="song-list-item d-flex container justify-content-center">
-                    <p>{val.artist}</p>
-                  </td>
-                  <td className="song-list-item d-flex container justify-content-center">
-                    <p>{this.getRating(index)}</p>
-                  </td>
-                </tr>
-              ))}
+              {
+                arr
+              }
               </tbody>
             </table>
             <div className="row">
@@ -152,6 +165,7 @@ export default class SongList extends React.Component {
 
           </div>
         </div>
+        <Modal id="searchModal" header={modalHeader} body={modalBody} />
       </div>
     );
   }
