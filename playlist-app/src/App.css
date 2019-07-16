@@ -12,3 +12,22 @@
     font-size: 75px;
     color: azure;
 }
+
+.playlist-header {
+    font-size: 75px;
+    color: azure;
+}
+
+.p-table {
+    background-color: cadetblue;
+}
+
+.table-header {
+    background-color: #1db954;
+    color: azure;
+}
+
+.table-sub {
+    background-color: #1db954;
+    color: azure;
+}

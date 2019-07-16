@@ -9,7 +9,7 @@ export default class AuthForm extends React.Component {
       <div className="col-12">
         <br/><br/><br/><br/>
         <div className="row">
-          <div className="d-flex container col-62 justify-content-center">
+          <div className="d-flex container col-6 justify-content-center">
             <h1 className="login-header font-weight-bold"> Collaborative Playlist Ranker </h1>
           </div>
         </div>
