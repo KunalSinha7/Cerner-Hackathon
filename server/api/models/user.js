@@ -4,16 +4,16 @@ var Schema = mongoose.Schema;
 
 const UserSchema = new Schema({
     _id : Schema.Types.ObjectId,
-    playlist : [{
-       song : {
+    playlist : [
+       {
          title : String,
          artist : String,
          ranking : String
        }
-   }],
-   invited : {
+    ],
+   invited : [{
      user : Schema.Types.ObjectId
-   }
+   }]
 });
 
 // Export model.

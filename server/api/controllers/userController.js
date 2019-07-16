@@ -1,24 +1,27 @@
+const express = require("express");
 const mongoose = require('mongoose');
-const User = require('server/api/mongoRoutes/userSchema');
+const User = require('../models/user');
 
-exports.createUser = (req, res, next) => {
+exports.user_create = (req, res, next) => {
   const user = new User({
     _id : new mongoose.Types.ObjectId,
-    playlist : [{
-       song : {
+    playlist : [
+       {
          title : 'Fun fun fun',
          artist : 'Fun people',
          ranking : 'A'
        },
-       song : {
+       {
          title : 'Fun fun nope',
          artist : 'Less fun people',
          ranking : 'C'
        }
-    }],
-    invited : {
-      user : new mongoose.Schema.Types.ObjectId
-    }
+     ],
+    invited_users : [
+      { user : 32428943234 },
+      { user : 32428943424 }
+    ]
   });
+  console.log(user);
+  res.send(user);
 }
-user.save();
