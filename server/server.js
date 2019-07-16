@@ -46,7 +46,7 @@ connectDB().then(async () => {
 
   var Schema = mongoose.Schema;
 
-  const UserSchema = new Schema({
+  var UserSchema = new Schema({
       _id : Schema.Types.ObjectId,
       playlist : [{
          song : {
@@ -55,8 +55,28 @@ connectDB().then(async () => {
            ranking : String
          }
      }],
-     invited : {
-       user : Schema.Types.ObjectId
-     }
+     invited : { user : Schema.Types.ObjectId }
   });
-})
+
+  var User = mongoose.model('User', UserSchema);
+
+  var testUser = new User({
+    _id : new mongoose.Types.ObjectId,
+    playlist : [{
+       song : {
+         title : 'Fun fun fun',
+         artist : 'Fun people',
+         ranking : 'A'
+       },
+       song : {
+         title : 'Fun fun nope',
+         artist : 'Less fun people',
+         ranking : 'C'
+       }
+    }],
+    invited : {
+      user : new mongoose.Schema.Types.ObjectId
+    }
+  });
+  console.log(testUser.playlist);
+});
