@@ -24,11 +24,15 @@ exports.user_create = (req, res, next) => {
 }
 
 exports.add_song = (req, res, next) => {
-  console.log(req);
-//   db.users.update(
-//     {'songs._id': data._id},
-//     { $push: {'songs.$.song_id': req.params.songId,'songs.$.ranking': -1 } }
-// )
+
+  User.findOneAndUpdate({user_id: 'lc0igz3pzb35ll28mj5ryczar'},
+  { $push: { "songs": { "song_id": '68790', "ranking": -1 } } },
+  {new: true}, (err, doc) => {
+    if (err) {
+        console.log("Something wrong when updating data!");
+    }
+    console.log(doc);
+  });
 }
 
 exports.user_list = function (req, res, next) {
