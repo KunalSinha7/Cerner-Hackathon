@@ -1,6 +1,6 @@
 .login-button {
     background-color: #1db954;
-    color: black;
+    color: azure;
 }
 
 .login-img {
@@ -19,7 +19,8 @@
 }
 
 .p-table {
-    background-color: #B8C5D6;
+    background-color: #272D2D;
+    color: azure;
 }
 
 .table-sub {

@@ -20,12 +20,13 @@ export default class PlaylistList extends React.Component {
         spotifyId: this.props.match.params.userId
       }).then((playlistInfo) => {
         console.log(playlistInfo.data);
-        this.setState({ ownerList: playlistInfo.data.owned, collaborative: playlistInfo.data.collaborative })
+        console.log(playlistInfo.data.collaborative);
+        this.setState({ ownerList: playlistInfo.data.owned, contributorList: playlistInfo.data.collaborative })
       });
   }
 
-  handlePlaylistClick = (playlistId) => {
-    history.push("/playlist/" + playlistId + "/" + this.state.spotifyId + "/" + this.state.spotifyToken);
+  handlePlaylistClick = (playlistId, ownerId, playlistName) => {
+    history.push("/playlist/" + playlistId + "/" + playlistName + "/" + this.state.spotifyId + "/" + ownerId + "/" + this.state.spotifyToken);
   }
 
   render() {
@@ -41,7 +42,7 @@ export default class PlaylistList extends React.Component {
 
           </div>
           <div className="col-4">
-            <table className="p-table table table-sm table-striped table-bordered">
+            <table className="p-table table table-sm table-striped">
               <thead className="">
                 <tr>
                   <th scope="col" className="table-sub d-flex container justify-content-center">Owner Playlists</th>
@@ -51,7 +52,7 @@ export default class PlaylistList extends React.Component {
                 {this.state.ownerList.map((val, index) => (
                   <tr key={index}>
                     <td className="d-flex container justify-content-center">
-                      <button className="playlist-button btn btn-link" onClick={() => this.handlePlaylistClick(val.id)}>{val.name}</button>
+                      <button className="playlist-button btn btn-link" onClick={() => this.handlePlaylistClick(val.id, val.ownerId, val.name)}>{val.name}</button>
                     </td>
                   </tr>
                 ))}
@@ -62,7 +63,7 @@ export default class PlaylistList extends React.Component {
 
           </div>
           <div className="col-4">
-            <table className="p-table table table-sm table-striped table-bordered">
+            <table className="p-table table table-sm table-striped">
               <thead>
                 <tr>
                   <th scope="col" className="table-sub d-flex container justify-content-center">Contributor Playlists</th>
@@ -72,7 +73,7 @@ export default class PlaylistList extends React.Component {
                 {this.state.contributorList.map((val, index) => (
                   <tr key={index}>
                     <td className="d-flex container justify-content-center">
-                      <button className="playlist-button btn btn-link" onClick={() => this.handlePlaylistClick(val.id)}>{val.name}</button>
+                      <button className="playlist-button btn btn-link" onClick={() => this.handlePlaylistClick(val.id, val.owner.id, val.name)}>{val.name}</button>
                     </td>
                   </tr>
                 ))}
