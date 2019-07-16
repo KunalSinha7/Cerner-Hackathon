@@ -95,10 +95,6 @@ export default class SongList extends React.Component {
     return rating;
   }
 
-  // handleClick = () => {
-  //   this.state.songList;
-  // }
-
   updateRating = (index,val) => {
     let songList2 = this.state.songList;
     songList2[index].rating = parseInt(val);
