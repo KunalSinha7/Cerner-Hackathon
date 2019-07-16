@@ -41,7 +41,7 @@ export default class PlaylistList extends React.Component {
 
           </div>
           <div className="col-4">
-            <table className="p-table table table-sm table-striped table-bordered">
+            <table className="p-table table table-sm table-striped">
               <thead className="">
                 <tr>
                   <th scope="col" className="table-sub d-flex container justify-content-center">Owner Playlists</th>
@@ -62,7 +62,7 @@ export default class PlaylistList extends React.Component {
 
           </div>
           <div className="col-4">
-            <table className="p-table table table-sm table-striped table-bordered">
+            <table className="p-table table table-sm table-striped">
               <thead>
                 <tr>
                   <th scope="col" className="table-sub d-flex container justify-content-center">Contributor Playlists</th>

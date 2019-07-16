@@ -72,8 +72,8 @@ export default class SongList extends React.Component {
   updateRating = (index,val) => {
     let songList2 = this.state.songList;
     songList2[index].rating = parseInt(val);
+    console.log(songList2[index].rating);
     this.setState({songList:songList2});
-    console.log(this.state.songList);
     this.getTotal();
   };
 
@@ -131,7 +131,7 @@ export default class SongList extends React.Component {
 
           </div>
           <div className="col-6">
-            <table className="p-table table table-sm table-striped table-bordered">
+            <table className="p-table table table-sm table-striped">
               <thead>
                 <tr className="d-flex flex-row">
                   <th scope="col" className="table-sub d-flex container justify-content-center">Song</th>
@@ -146,20 +146,6 @@ export default class SongList extends React.Component {
               }
               </tbody>
             </table>
-            <div className="row">
-              <div className="col-6 rating-text d-flex container justify-content-center">
-                <div className="d-flex container justify-content-start">
-                  <button className="table-button rounded-pill fa fa-plus mb-1 mt-1 mr-2"/>
-                  <p> Song Count: {this.state.songList.length} </p>
-                </div>
-              </div>
-              <div className="col-6 rating-text d-flex container justify-content-center">
-                <div className="d-flex container justify-content-end">
-                  <p className="mr-2">Total Rating: {this.state.total}</p>
-                  <button type="submit" className="table-button rounded-pill fa fa-paper-plane"/>
-                </div>
-              </div>
-            </div>
           </div>
           <div className="col-0-xs col-0-sm col-3">
 

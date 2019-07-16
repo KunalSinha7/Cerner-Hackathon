@@ -90,7 +90,7 @@ export default class Login extends Component {
         <div className="row">
           <div className="d-flex container col-6">
             <button
-              className="login-button btn btn-success btn-lg btn-block rounded-pill center-block"
+              className="login-button btn btn-success btn-lg btn-block rounded-pill center-block "
               onClick={this.handleClick}
             >
               Login With Spotify

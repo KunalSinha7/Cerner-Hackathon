@@ -10,8 +10,6 @@ export default class RatingDropdown extends React.Component {
   }
 
   change = event => {
-    console.log(event.target.value);
-    console.log(this.state.id);
     this.props.update(this.state.id,event.target.value);
   };
 
