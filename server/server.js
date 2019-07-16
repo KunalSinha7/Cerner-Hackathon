@@ -2,10 +2,10 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const api = require("./api/api");
 const mongoose = require('mongoose');
-// const cors = require("cors");
+const cors = require("cors");
 
 const app = express();
-// app.use(cors);
+app.use(cors);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -39,8 +39,10 @@ const connectDB=() => {
   });
 }
 connectDB().then(async () => {
-  const port = process.env.port || 5000;
-  app.listen(port, () => {
-    console.log(`Server started on port`, port);
-  });
-});
+    const port = process.env.port || 5000;
+    app.listen(port, () => {
+        console.log(`Server started on port`, port);
+    });
+}).catch((err) => {
+    console.log(err);
+})
