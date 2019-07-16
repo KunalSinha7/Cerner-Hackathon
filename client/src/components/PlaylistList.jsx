@@ -14,7 +14,6 @@ export default class PlaylistList extends React.Component {
   }
 
   componentDidMount() {
-    
     axios
       .post("http://localhost:5000/api/v1/spotify/getPlaylists", {
         spotifyToken: this.props.match.params.authToken,
