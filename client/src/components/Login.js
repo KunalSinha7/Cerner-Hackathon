@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { spotifyWebApiURL } from "../constants";
+import { Route, BrowserRouter, Link } from 'react-router-dom';
 import axios from "axios";
 
 export default class Login extends Component {
@@ -10,6 +11,11 @@ export default class Login extends Component {
       authorized: false,
       profile: []
     };
+
+    Login.info = {
+        auth: "unspecified",
+        playlists: "none",
+    };
   }
 
   componentDidMount = () => {
@@ -19,6 +25,8 @@ export default class Login extends Component {
         .split("token=")[1]
         .split("&")[0]
         .trim();
+      console.log('pre-(assigning Login.)auth', authToken);
+      Login.info.auth = authToken;
       let authorized = true;
       this.setState({ authToken, authorized });
       console.log("Auth Token", authToken);
@@ -35,6 +43,7 @@ export default class Login extends Component {
             })
             .then(playlistInfo => {
               console.log(playlistInfo);
+              Login.info.playlists = playlistInfo;
               axios
                 .post("http://localhost:5000/api/v1/spotify/getSongs", {
                   spotifyToken: authToken,
@@ -131,7 +140,10 @@ export default class Login extends Component {
 
   render() {
     return this.state.authorized ? (
-      <div>Hello</div>
+      <div>
+        <Link to="/SongList" className="btn btn-primary">view songs</Link>
+      </div>
+
     ) : (
       <div className="col-12">
         <br />

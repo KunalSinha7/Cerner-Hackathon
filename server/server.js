@@ -2,10 +2,10 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const api = require("./api/api");
 const mongoose = require('mongoose');
-const cors = require("cors");
+//const cors = require("cors");
 
 const app = express();
-app.use(cors);
+//app.use(cors);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -30,7 +30,13 @@ app.use(function(req, res, next) {
 });
 
 const connectDB=() => {
-    return mongoose.connect('mongodb+srv://admin:admin@dev-laa9e.mongodb.net/test?retryWrites=true&w=majority');
+  return mongoose.connect('mongodb+srv://admin:admin@dev-laa9e.mongodb.net/test?retryWrites=true&w=majority', {useNewUrlParser:true})
+    .then((res) => {
+      console.log(' ########### Connected to mongoDB ###########');
+    })
+    .catch((err) => {
+      console.log('Error in connecting to mongoDB' + err);
+  });
 }
 connectDB().then(async () => {
     const port = process.env.port || 5000;
@@ -39,6 +45,4 @@ connectDB().then(async () => {
     });
 }).catch((err) => {
     console.log(err);
-})
-
-
+});
