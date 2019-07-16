@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import React, { Component } from "react";
 import * as $ from "jquery";
 import hash from "./hash";
@@ -7,7 +6,7 @@ import "./App.css";
 
 const authEndpoint = "https://accounts.spotify.com/authorize";
 const clientId = "ffba0bee99234e33a3cd770365607776";
-const redirectUri = "https://localhost:3000/";
+const redirectUri = "https://kunal.app/";
 const scopes =  [
     "user-top-read",
     "user-read-currently-playing",
@@ -140,18 +139,3 @@ class App extends Component {
 // }
 
 export default App;
-=======
-import React from 'react';
-import AuthForm from './AuthForm';
-import './App.css';
-
-export default class App extends React.Component {
-  render() {
-    return (
-      <div>
-        <AuthForm/>
-      </div>
-    );
-  }
-}
->>>>>>> 3a090b8fa44b18035910b7b0d681d31f3ea8a068
