@@ -20,6 +20,7 @@ export default class Login extends Component {
         .trim();
       let authorized = true;
       this.setState({ authToken, authorized });
+      console.log(authToken);
     }
   };
 
