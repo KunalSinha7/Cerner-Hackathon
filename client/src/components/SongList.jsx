@@ -63,7 +63,7 @@ export default class SongList extends React.Component {
 
   getRating(id) {
     let rating;
-    if (this.state.owner) {
+    if (this.state.owner === this.state.spotifyId) {
       rating = <RatingDropdown id={id} update={this.updateRating}/>;
     } else {
       rating = 5;
