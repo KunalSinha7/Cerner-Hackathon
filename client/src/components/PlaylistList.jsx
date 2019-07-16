@@ -20,7 +20,8 @@ export default class PlaylistList extends React.Component {
         spotifyId: this.props.match.params.userId
       }).then((playlistInfo) => {
         console.log(playlistInfo.data);
-        this.setState({ ownerList: playlistInfo.data.owned, collaborative: playlistInfo.data.collaborative })
+        console.log(playlistInfo.data.collaborative);
+        this.setState({ ownerList: playlistInfo.data.owned, contributorList: playlistInfo.data.collaborative })
       });
   }
 

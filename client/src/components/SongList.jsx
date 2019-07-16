@@ -35,6 +35,7 @@ export default class SongList extends React.Component {
           spotifyId: this.state.spotifyId
       }).then((res) => {
         res.data.forEach((element) => {
+          console.log(element)
           let addedBy = element.added_by.href;
           if(addedBy) {
             axios.get(addedBy,{
