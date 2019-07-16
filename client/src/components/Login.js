@@ -32,89 +32,16 @@ export default class Login extends Component {
             .post("http://localhost:5000/api/v1/spotify/getPlaylists", {
               spotifyToken: authToken,
               spotifyId: userInfo.data.spotifyId
-            })
-            .then(playlistInfo => {
+            }).then((playlistInfo) => {
               console.log(playlistInfo);
-              axios
-                .post("http://localhost:5000/api/v1/spotify/getSongs", {
-                  spotifyToken: authToken,
-                  spotifyId: userInfo.data.spotifyId,
-                  playlistId: playlistInfo.data.owned[0].id
-                })
-                .then(tracks => {
-                  console.log(tracks.data);
-                  axios
-                    .post("http://localhost:5000/api/v1/spotify/search", {
-                      spotifyToken: authToken,
-                      query: "Old Town Road"
-                    })
-                    .then(searchRes => {
-                      console.log(searchRes);
-                      axios
-                        .post(
-                          "http://localhost:5000/api/v1/spotify/addToPlaylist",
-                          {
-                            spotifyToken: authToken,
-                            spotifyId: userInfo.data.spotifyId,
-                            playlistId: playlistInfo.data.owned[0].id,
-                            songId: "55oSiAj3wUVgghv0mxOQ97"
-                          }
-                        )
-                        .then(res => {
-                          console.log(res);
-                          axios
-                            .post(
-                              "http://localhost:5000/api/v1/spotify/removeFromPlaylist",
-                              {
-                                spotifyToken: authToken,
-                                playlistId: playlistInfo.data.owned[0].id,
-                                songId: "55oSiAj3wUVgghv0mxOQ97"
-                              }
-                            )
-                            .then(res => {
-                              console.log(res);
-                            })
-                            .catch(err => {
-                              console.log(
-                                "Something went wrong :( ... Failed to remove song from playlist",
-                                err
-                              );
-                            });
-                        })
-                        .catch(err => {
-                          console.log(
-                            "Something went wrong :( ... Failed to add song to playlist",
-                            err
-                          );
-                        });
-                    })
-                    .catch(err => {
-                      console.log(
-                        "Something went wrong :( ... Failed to retrieve search results",
-                        err
-                      );
-                    });
-                })
-                .catch(err => {
-                  console.log(
-                    "Something went wrong :( ... Failed to retrieve songs",
-                    err
-                  );
-                });
-            })
-            .catch(err => {
-              console.log(
-                "Something went wrong :( ... Failed to get playlist data",
-                err
-              );
             });
-        })
-        .catch(err => {
+        }).catch(err => {
           console.log(
             "Something went wrong :( ... Failed to get user data",
             err
           );
         });
+      
     }
   };
 
