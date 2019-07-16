@@ -4,9 +4,9 @@ var Schema = mongoose.Schema;
 
 const UserSchema = new Schema({
     _id : { type: Schema.Types.ObjectId },
-    user_id : { type: Number, required: true },
+    user_id : { type: String, required: true },
     songs : [{
-      song_id : { type: Number, required: true },
+      song_id : { type: String, required: true },
       ranking : { type: String }
     }]
 });
