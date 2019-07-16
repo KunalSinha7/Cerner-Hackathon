@@ -8,11 +8,11 @@ exports.user_create = (req, res, next) => {
     user_id : 345972,
     songs: [
       {
-        song_id : 450943,
+        song_id : '450943',
         ranking : 5
       },
       {
-        song_id : 198212,
+        song_id : '198212',
         ranking : 3
       }
     ]
@@ -21,6 +21,14 @@ exports.user_create = (req, res, next) => {
   if (err) return console.error(err);
     res.send(user);
   });
+}
+
+exports.add_song = (req, res, next) => {
+  console.log(req);
+//   db.users.update(
+//     {'songs._id': data._id},
+//     { $push: {'songs.$.song_id': req.params.songId,'songs.$.ranking': -1 } }
+// )
 }
 
 exports.user_list = function (req, res, next) {

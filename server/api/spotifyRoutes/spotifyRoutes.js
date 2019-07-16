@@ -1,5 +1,7 @@
 const express = require("express");
+const mongoose = require('mongoose');
 const axios = require("axios");
+const User = require('../models/user');
 const router = express.Router();
 
 router.get("/", (req, res) => {
@@ -12,11 +14,25 @@ router.post("/getUser", async (req, res) => {
     let { data } = await axios.get(
       "https://api.spotify.com/v1/me?access_token=" + token
     );
+    console.log(data);
     let jsonRes = {
       name: data.display_name,
       spotifyId: data.id,
       spotifyUrl: data.href
     };
+    if ( !User.find({user_id: data.id}) ){
+      const user = new User({
+        _id : new mongoose.Types.ObjectId,
+        user_id : data.id,
+        songs: []
+      });
+
+      user.save(function (err, user) {
+      if (err) return console.error(err);
+        console.log(user);
+      });
+    }
+
     res.send(JSON.stringify(jsonRes));
   } catch (err) {
     console.log("Error: ", err);
@@ -136,7 +152,6 @@ router.post("/addToPlaylist", async (req, res) => {
         }
       }
     );
-    // TODO: Add to MONGO
     console.log("Added Songs", addedSongs.data.snapshot_id);
     res.send(JSON.stringify(addedSongs.data.snapshot_id));
   } catch (err) {}
