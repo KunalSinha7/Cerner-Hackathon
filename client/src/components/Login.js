@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { spotifyWebApiURL } from "../constants";
 import axios from "axios";
+import history from '../history';
 
 export default class Login extends Component {
   constructor(props) {
@@ -21,20 +22,12 @@ export default class Login extends Component {
         .trim();
       let authorized = true;
       this.setState({ authToken, authorized });
-      console.log("Auth Token", authToken);
       axios
         .post("http://localhost:5000/api/v1/spotify/getUser", {
           spotifyToken: authToken
         })
         .then(userInfo => {
-          console.log(userInfo);
-          axios
-            .post("http://localhost:5000/api/v1/spotify/getPlaylists", {
-              spotifyToken: authToken,
-              spotifyId: userInfo.data.spotifyId
-            }).then((playlistInfo) => {
-              console.log(playlistInfo);
-            });
+          history.push("/userProfile/" + userInfo.data.spotifyId + "/" + authToken);
         }).catch(err => {
           console.log(
             "Something went wrong :( ... Failed to get user data",
@@ -49,9 +42,19 @@ export default class Login extends Component {
     event.preventDefault();
     if (this.state.authorized) {
       const { authToken } = this.state;
-      console.log("Authorized", authToken);
+      axios
+        .post("http://localhost:5000/api/v1/spotify/getUser", {
+          spotifyToken: authToken
+        })
+        .then(userInfo => {
+          history.push("/userProfile/" + userInfo.data.spotifyId + "/" + authToken);
+        }).catch(err => {
+          console.log(
+            "Something went wrong :( ... Failed to get user data",
+            err
+          );
+        });
     } else {
-      console.log("Spotify Web Api URL", spotifyWebApiURL);
       window.location.assign(spotifyWebApiURL);
     }
   };

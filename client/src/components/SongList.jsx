@@ -1,4 +1,6 @@
 import React from 'react';
+import Login from "./Login.js";
+import history from "../history.js";
 
 export default class SongList extends React.Component {
   constructor(props) {
@@ -46,6 +48,20 @@ export default class SongList extends React.Component {
     ];
     this.total = 0;
   }
+
+  componentDidMount = () => {
+      // if (Login.auth === undefined)
+      // {
+      //     history.push("/");
+      // }
+      // console.log(Login.info.auth);
+      // console.log(Login.info.playlists);
+      // axios.post("http://localhost:5000/api/v1/spotify/getSongs/", {
+      //     spotifyToken: Login.auth,
+      //     playlistId: ,
+      //     spotifyId:
+      // });
+  };
 
   getTotal() {
     this.songList.forEach(item => {

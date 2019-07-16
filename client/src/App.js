@@ -18,12 +18,12 @@ export default class App extends Component {
           <Route exact={true} path="/" component={Login} />
           <Route
             exact={false}
-            path="/userProfile/:userId"
+            path="/userProfile/:userId/:authToken"
             component={PlaylistList}
           />
           <Route
             exact={false}
-            path="/playlist/:playlistId"
+            path="/playlist/:playlistId/:userId/:authToken"
             component={SongList}
           />
           <Redirect from="*" to="/" />

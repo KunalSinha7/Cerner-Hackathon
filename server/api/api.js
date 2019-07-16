@@ -6,7 +6,7 @@ const mongoRoutes = require("./mongoRoutes/mongoRoutes");
 
 router.use('/sentimentAnalysis', sentimentAnalysis);
 router.use('/spotify', spotifyRoutes);
-//router.use('/mongo', mongoRoutes);
+router.use('/mongo', mongoRoutes);
 router.get('/', (req, res) => {
     res.send("API v1");
 });
