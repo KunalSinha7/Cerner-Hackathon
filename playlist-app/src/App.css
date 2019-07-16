@@ -1,6 +1,6 @@
 .login-button {
     background-color: #1db954;
-    color: azure;
+    color: black;
 }
 
 .login-img {
@@ -28,4 +28,19 @@
 
 .playlist-button {
     color: azure;
+}
+
+.song-list-item {
+    color: azure;
+}
+
+.rating-text {
+    color: azure;
+    font-size: 25px;
+}
+
+.add-button {
+    font-size: 35px;
+    background-color: #1db954;
+    color: black;
 }
