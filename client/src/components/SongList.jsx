@@ -19,7 +19,8 @@ export default class SongList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      owner: true,
+      playlistName: props.match.params.playlistName,
+      owner: props.match.params.ownerId,
       spotifyToken: props.match.params.authToken,
       spotifyId: props.match.params.userId,
       playlistId: props.match.params.playlistId,
@@ -79,6 +80,7 @@ export default class SongList extends React.Component {
   };
 
   render() {
+    console.log(this.state.playlistName);
     let arr = [];
     if (this.state.songList.length >= 0) {
       this.state.songList.map((val, index) => {
@@ -115,7 +117,7 @@ export default class SongList extends React.Component {
             </div>
           </div>
           <div className="d-flex container col-2 justify-content-center">
-            <h1 className="playlist-header mr-2">Playlist</h1>
+            <h1 className="playlist-header mr-2">{this.state.playlistName}</h1>
           </div>
           <div className="col-3 rating-text d-flex container justify-content-center">
             <div className="d-flex container justify-content-end">
