@@ -1,6 +1,7 @@
 import React from 'react';
 // import AuthForm from './AuthForm';
 import PlaylistList from './components/PlaylistList';
+// import SongList from './components/SongList';
 import './App.css';
 
 // const pageState = {
@@ -16,6 +17,8 @@ export default class App extends React.Component {
       <div>
         {/*<AuthForm/>*/}
         <PlaylistList/>
+        {/*<SongList/>*/}
+
       </div>
     );
   }

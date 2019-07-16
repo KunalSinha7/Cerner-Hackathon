@@ -24,6 +24,7 @@ export default class PlaylistList extends React.Component {
       },
     ];
   }
+
   render() {
     return (
       <div>
@@ -39,9 +40,9 @@ export default class PlaylistList extends React.Component {
           <div className="col-4">
             <table className="p-table table table-sm table-striped table-bordered">
               <thead className="">
-              <tr>
-                <th scope="col" className="table-sub d-flex container justify-content-center">Owner Playlists</th>
-              </tr>
+                <tr>
+                  <th scope="col" className="table-sub d-flex container justify-content-center">Owner Playlists</th>
+                </tr>
               </thead>
               <tbody>
               {this.ownerList.map((val, index) => (
@@ -60,9 +61,9 @@ export default class PlaylistList extends React.Component {
           <div className="col-4">
             <table className="p-table table table-sm table-striped table-bordered">
               <thead>
-              <tr>
-                <th scope="col" className="table-sub d-flex container justify-content-center">Contributor Playlists</th>
-              </tr>
+                <tr>
+                  <th scope="col" className="table-sub d-flex container justify-content-center">Contributor Playlists</th>
+                </tr>
               </thead>
               <tbody>
               {this.contributorList.map((val, index) => (

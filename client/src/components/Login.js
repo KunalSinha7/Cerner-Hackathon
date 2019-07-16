@@ -36,6 +36,29 @@ export default class Login extends Component {
   };
 
   render() {
-    return this.state.authorized ? <div>Hello</div> : <button onClick={this.handleClick}>Login</button>;
+    return this.state.authorized
+      ? <div>Hello</div>
+      : (
+        <div className="col-12">
+        <br/><br/><br/><br/>
+        <div className="row">
+          <div className="d-flex container col-12 justify-content-center">
+            <h1 className="login-header font-weight-bold"> Collaborative Playlist Ranker </h1>
+          </div>
+        </div>
+        <br/><br/><br/><br/>
+        <div className="row">
+          <div className="d-flex container col-6 justify-content-center">
+            <i className="login-img fa fa-spotify"/>
+          </div>
+        </div>
+        <br/><br/>
+        <div className="row">
+          <div className="d-flex container col-6">
+            <button className="login-button btn btn-success btn-lg btn-block rounded-pill center-block" onClick = {this.handleClick}>Login With Spotify</button>
+          </div>
+        </div>
+      </div>
+    )
   }
 }
