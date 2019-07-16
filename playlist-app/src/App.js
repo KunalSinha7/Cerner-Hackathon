@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, { Component } from "react";
 import * as $ from "jquery";
 import hash from "./hash";
@@ -139,3 +140,18 @@ class App extends Component {
 // }
 
 export default App;
+=======
+import React from 'react';
+import AuthForm from './AuthForm';
+import './App.css';
+
+export default class App extends React.Component {
+  render() {
+    return (
+      <div>
+        <AuthForm/>
+      </div>
+    );
+  }
+}
+>>>>>>> 3a090b8fa44b18035910b7b0d681d31f3ea8a068

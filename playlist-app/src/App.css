@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 .App {
   text-align: center;
 }
@@ -94,4 +95,19 @@ body {
 
 .main-container {
   flex: 1;
+=======
+.login-button {
+    background-color: #1db954;
+    color: azure;
+}
+
+.login-img {
+    font-size: 250px;
+    color: #1db954;
+}
+
+.login-header {
+    font-size: 75px;
+    color: azure;
+>>>>>>> 3a090b8fa44b18035910b7b0d681d31f3ea8a068
 }
