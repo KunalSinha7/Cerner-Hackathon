@@ -43,4 +43,20 @@ connectDB().then(async () => {
   app.listen(port, () => {
     console.log(`Server started on port`, port);
   });
+
+  var Schema = mongoose.Schema;
+
+  const UserSchema = new Schema({
+      _id : Schema.Types.ObjectId,
+      playlist : [{
+         song : {
+           title : String,
+           artist : String,
+           ranking : String
+         }
+     }],
+     invited : {
+       user : Schema.Types.ObjectId
+     }
+  });
 })

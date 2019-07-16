@@ -1,4 +1,6 @@
-const User = require('mongo/blogSchema');
+const mongoose = require('mongoose');
+const User = require('server/api/mongoRoutes/userSchema');
+
 exports.createUser = (req, res, next) => {
   const user = new User({
     _id : new mongoose.Types.ObjectId,
@@ -19,3 +21,4 @@ exports.createUser = (req, res, next) => {
     }
   });
 }
+user.save();
