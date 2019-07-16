@@ -51,18 +51,39 @@ export default class Login extends Component {
                     .then(searchRes => {
                       console.log(searchRes);
                       axios
-                        .post("http://localhost:5000/api/v1/spotify/addToPlaylist", {
-                          spotifyToken: authToken,
-                          spotifyId: userInfo.data.spotifyId,
-                          playlistId: playlistInfo.data.owned[0].id,
-                          songId: "76cy1WJvNGJTj78UqeA5zr"
-                        })
+                        .post(
+                          "http://localhost:5000/api/v1/spotify/addToPlaylist",
+                          {
+                            spotifyToken: authToken,
+                            spotifyId: userInfo.data.spotifyId,
+                            playlistId: playlistInfo.data.owned[0].id,
+                            songId: "55oSiAj3wUVgghv0mxOQ97"
+                          }
+                        )
                         .then(res => {
                           console.log(res);
+                          axios
+                            .post(
+                              "http://localhost:5000/api/v1/spotify/removeFromPlaylist",
+                              {
+                                spotifyToken: authToken,
+                                playlistId: playlistInfo.data.owned[0].id,
+                                songId: "55oSiAj3wUVgghv0mxOQ97"
+                              }
+                            )
+                            .then(res => {
+                              console.log(res);
+                            })
+                            .catch(err => {
+                              console.log(
+                                "Something went wrong :( ... Failed to remove song from playlist",
+                                err
+                              );
+                            });
                         })
                         .catch(err => {
                           console.log(
-                            "Something went wrong :( ... Failed to retrieve songs",
+                            "Something went wrong :( ... Failed to add song to playlist",
                             err
                           );
                         });
@@ -109,37 +130,44 @@ export default class Login extends Component {
   };
 
   render() {
-<<<<<<< HEAD
     return this.state.authorized ? (
       <div>Hello</div>
     ) : (
-      <button onClick={this.handleClick}>Login</button>
-    );
-=======
-    return this.state.authorized
-      ? <div>Hello</div>
-      : (
-        <div className="col-12">
-        <br/><br/><br/><br/>
+      <div className="col-12">
+        <br />
+        <br />
+        <br />
+        <br />
         <div className="row">
           <div className="d-flex container col-12 justify-content-center">
-            <h1 className="login-header font-weight-bold"> Collaborative Playlist Ranker </h1>
+            <h1 className="login-header font-weight-bold">
+              {" "}
+              Collaborative Playlist Ranker{" "}
+            </h1>
           </div>
         </div>
-        <br/><br/><br/><br/>
+        <br />
+        <br />
+        <br />
+        <br />
         <div className="row">
           <div className="d-flex container col-6 justify-content-center">
-            <i className="login-img fa fa-spotify"/>
+            <i className="login-img fa fa-spotify" />
           </div>
         </div>
-        <br/><br/>
+        <br />
+        <br />
         <div className="row">
           <div className="d-flex container col-6">
-            <button className="login-button btn btn-success btn-lg btn-block rounded-pill center-block" onClick = {this.handleClick}>Login With Spotify</button>
+            <button
+              className="login-button btn btn-success btn-lg btn-block rounded-pill center-block"
+              onClick={this.handleClick}
+            >
+              Login With Spotify
+            </button>
           </div>
         </div>
       </div>
-    )
->>>>>>> bbf125f02317c5af50105a543f446918e0c67814
+    );
   }
 }

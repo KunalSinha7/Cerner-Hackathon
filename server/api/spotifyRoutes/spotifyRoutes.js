@@ -81,7 +81,7 @@ router.post("/addToPlaylist", async (req, res) => {
   try {
     let token = req.body.spotifyToken;
     let playlistId = req.body.playlistId;
-    let spotifyId = req.body.playlistId;
+    let spotifyId = req.body.spotifyId;
     let songId = req.body.songId;
 
     let playlistDetails = await axios.get(
@@ -109,6 +109,7 @@ router.post("/addToPlaylist", async (req, res) => {
     let numSongs = 0;
     items.forEach(element => {
       if (element.track.id === songId) {
+        console.log("Song already in playlist");
         res.status(503).send("Song already in playlist");
       }
       if (
@@ -118,6 +119,7 @@ router.post("/addToPlaylist", async (req, res) => {
         numSongs++;
       }
       if (numSongs >= 10) {
+        console.log("Cannot add any more songs. Reached max limit.")
         res.status(503).send("Cannot add any more songs. Reached max limit.");
       }
     });
@@ -125,7 +127,7 @@ router.post("/addToPlaylist", async (req, res) => {
     let addedSongs = await axios.post(
       "https://api.spotify.com/v1/playlists/" + playlistId + "/tracks",
       {
-        uris: ["spotify:track:" + songId] 
+        uris: ["spotify:track:" + songId]
       },
       {
         headers: {
@@ -134,12 +136,34 @@ router.post("/addToPlaylist", async (req, res) => {
         }
       }
     );
+    // TODO: Add to MONGO
     console.log("Added Songs", addedSongs.data.snapshot_id);
     res.send(JSON.stringify(addedSongs.data.snapshot_id));
   } catch (err) {}
 });
 
-router.post("/removeFromPlaylist", async (req, res) => {});
+router.post("/removeFromPlaylist", async (req, res) => {
+  try {
+    let token = req.body.spotifyToken;
+    let playlistId = req.body.playlistId;
+    let songId = req.body.songId;
+    let response = await axios.delete(
+      "https://api.spotify.com/v1/playlists/" + playlistId + "/tracks",
+      {
+        headers: {
+          Authorization: "Bearer " + token,
+          "Content-Type": "application/json"
+        },
+        data: { tracks: [{ uri: "spotify:track" + songId }] }
+      }
+    );
+    // TODO: REMOVE FROM MONGO
+    console.log(response);
+    res.send(JSON.stringify(response));
+  } catch (err) {
+    console.log("Err", err);
+  }
+});
 
 router.post("/changeSongRank", async (req, res) => {});
 
