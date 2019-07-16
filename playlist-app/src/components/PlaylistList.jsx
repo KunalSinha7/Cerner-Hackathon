@@ -47,7 +47,7 @@ export default class PlaylistList extends React.Component {
               {this.ownerList.map((val, index) => (
                 <tr key={index}>
                   <td className="d-flex container justify-content-center">
-                    <button className="btn btn-link">{val.name}</button>
+                    <button className="playlist-button btn btn-link">{val.name}</button>
                   </td>
                 </tr>
               ))}
@@ -68,7 +68,7 @@ export default class PlaylistList extends React.Component {
               {this.contributorList.map((val, index) => (
                 <tr key={index}>
                   <td className="d-flex container justify-content-center">
-                    <button className="btn btn-link">{val.name}</button>
+                    <button className="playlist-button btn btn-link">{val.name}</button>
                   </td>
                 </tr>
               ))}
