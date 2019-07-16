@@ -1,7 +1,9 @@
 import React, {Component} from 'react';
 import './App.css';
 import { Route, BrowserRouter } from 'react-router-dom';
-import Login from "./components/Login";
+// import Login from "./components/Login";
+// import PlaylistList from "./components/PlaylistList";
+import SongList from "./components/SongList";
 
 export default class App extends Component {
   constructor(props) {
@@ -12,7 +14,7 @@ export default class App extends Component {
   render() {
     return (
       <BrowserRouter>
-        <Route exact={false} path="/" component={Login} />
+        <Route exact={false} path="/" component={SongList} />
         {/* <Route exact={false} path="/userProfile/:userId" component={} />
         <Route exact={false} path="/playlist/:playlistId" component={} />
         <Route exact={false} path="/search/:playlistId/:userId" component={} /> */}

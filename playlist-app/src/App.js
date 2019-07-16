@@ -1,6 +1,6 @@
 import React from 'react';
-// import AuthForm from './AuthForm';
-import PlaylistList from './components/PlaylistList';
+import AuthForm from './AuthForm';
+// import PlaylistList from './components/PlaylistList';
 // import SongList from './components/SongList';
 import './App.css';
 
@@ -15,8 +15,8 @@ export default class App extends React.Component {
   render() {
     return (
       <div>
-        {/*<AuthForm/>*/}
-        <PlaylistList/>
+        <AuthForm/>
+        {/*<PlaylistList/>*/}
         {/*<SongList/>*/}
 
       </div>

@@ -1,5 +1,5 @@
 import React from 'react';
-// import axios from 'axios';
+import axios from 'axios';
 
 export default class PlaylistList extends React.Component {
   constructor(props) {
@@ -26,23 +26,23 @@ export default class PlaylistList extends React.Component {
     ];
   }
 
-  // componentDidMount() {
-  //   // let body = {
-  //   //   spotifyToken: 'BQCDOVg1YcuRXnmLMhl2mUBDfaiSXgTRIusPkaHNOjgQ2SFI0MB2Iuoc7cvcbCNblaoclhPyUs9zQFUMwzxYk5nxBieB9UZg7VhSTHHXW_sHXDUia9PDuLn2gTCDTTIZznxcuqxWMoYCbkObtlarCfyYBbrN9lGg3O4VyGDeKNgDtgN0UTVn',
-  //   //   spotifyId: 1254990669
-  //   // };
-  //   console.log('hello axios');
-  //   axios.get('http://localhost:5000/api/v1/spotify/').then((res) => {console.log('hey', res)}).catch((error) => {
-  //     console.log('error')
-  //   });
-  //   // axios.post('http://localhost:5000/api/v1/spotify/getPlaylists', body)
-  //   //   .then((res) => {
-  //   //     console.log('hello', res)
-  //   //   })
-  //   //   .catch((error) => {
-  //   //     console.log('error')
-  //   // });
-  // }
+  componentDidMount() {
+    // let body = {
+    //   spotifyToken: 'BQCDOVg1YcuRXnmLMhl2mUBDfaiSXgTRIusPkaHNOjgQ2SFI0MB2Iuoc7cvcbCNblaoclhPyUs9zQFUMwzxYk5nxBieB9UZg7VhSTHHXW_sHXDUia9PDuLn2gTCDTTIZznxcuqxWMoYCbkObtlarCfyYBbrN9lGg3O4VyGDeKNgDtgN0UTVn',
+    //   spotifyId: 1254990669
+    // };
+    console.log('hello axios');
+    axios.get('http://localhost:5000/api/v1/spotify/').then((res) => {console.log('hey', res)}).catch((error) => {
+      console.log('error')
+    });
+    // axios.post('http://localhost:5000/api/v1/spotify/getPlaylists', body)
+    //   .then((res) => {
+    //     console.log('hello', res)
+    //   })
+    //   .catch((error) => {
+    //     console.log('error')
+    // });
+  }
 
 
   render() {
