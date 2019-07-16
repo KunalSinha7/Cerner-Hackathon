@@ -19,11 +19,12 @@
 }
 
 .p-table {
-    background-color: cadetblue;
+    background-color: #B8C5D6;
 }
 
 .table-sub {
     background-color: #1db954;
+    color: azure;
 }
 
 .playlist-button {
@@ -31,6 +32,7 @@
 }
 
 .song-list-item {
+    background-color: #272D2D;
     color: azure;
 }
 
@@ -40,7 +42,16 @@
 }
 
 .table-button {
-    font-size: 35px;
+    font-size: 15px;
     background-color: #1db954;
     color: black;
+}
+
+.select-form {
+    background-color: dimgray;
+    color: azure;
+}
+
+.table-card {
+    background-color: #272D2D;
 }
