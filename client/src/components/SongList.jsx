@@ -15,6 +15,17 @@ const modalBody = (
   </div>
 );
 
+const modalFooter = (
+  <div>
+    <button type="button" className="btn btn-primary">
+      Search
+    </button>
+    <button type="button" className="btn btn-secondary ml-2" data-dismiss="modal">
+      Close
+    </button>
+  </div>
+);
+
 export default class SongList extends React.Component {
   constructor(props) {
     super(props);
@@ -112,7 +123,7 @@ export default class SongList extends React.Component {
           </div>
           <div className="col-3 rating-text d-flex container justify-content-center">
             <div className="d-flex container justify-content-start">
-              <p className="mt-5 mb-5 ml-5 mr-2"> Song Count: {this.state.songList.length} </p>
+              <p className="mt-5 mb-5 mr-2"> Song Count: {this.state.songList.length} </p>
               <button className="table-button rounded-pill fa fa-plus mt-5 mb-5" data-toggle="modal" data-target="#searchModal"/>
             </div>
           </div>
@@ -122,7 +133,7 @@ export default class SongList extends React.Component {
           <div className="col-3 rating-text d-flex container justify-content-center">
             <div className="d-flex container justify-content-end">
               <p className="mt-5 mb-5 mr-2">Total Rating: {this.state.total}</p>
-              <button type="submit" className="table-button rounded-pill fa fa-paper-plane mt-5 mb-5 mr-5"/>
+              <button type="submit" className="table-button rounded-pill fa fa-paper-plane mt-5 mb-5"/>
             </div>
           </div>
           <div className="col-2">
@@ -154,7 +165,7 @@ export default class SongList extends React.Component {
 
           </div>
         </div>
-        <Modal id="searchModal" header={modalHeader} body={modalBody} />
+        <Modal id="searchModal" />
       </div>
     );
   }
