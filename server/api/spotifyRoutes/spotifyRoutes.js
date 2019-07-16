@@ -87,11 +87,23 @@ router.post("/getSongs", async (req, res) => {
         }
       }
     );
-    // TODO: APPEND RANKS
+     data.items.forEach(playlistObj => {
+      let songId = playlistObj.track.id;
+        User.findOne({user_id: spotifyId },
+         { songs: { $elemMatch: { song_id: songId } } },
+        (err, doc) => {
+          if (err) {
+            console.log("Something wrong when updating data!");
+          }
+          playlistObj['ranking'] = doc.songs[0].ranking;
+        });
+      });
+
+    } catch (err) {
+      console.log("Error", err);
+    }
     res.send(JSON.stringify(data.items));
-  } catch (err) {
-    console.log("Error", err);
-  }
+  // });
 });
 
 router.post("/addToPlaylist", async (req, res) => {

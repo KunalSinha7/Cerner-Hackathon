@@ -24,14 +24,25 @@ exports.user_create = (req, res, next) => {
 }
 
 exports.add_song = (req, res, next) => {
-
   User.findOneAndUpdate({user_id: 'lc0igz3pzb35ll28mj5ryczar'},
   { $push: { "songs": { "song_id": '68790', "ranking": -1 } } },
   {new: true}, (err, doc) => {
     if (err) {
-        console.log("Something wrong when updating data!");
+      console.log("Something wrong when updating data!");
     }
-    console.log(doc);
+      console.log(doc);
+  });
+}
+
+exports.get_song = (req, res, next) => {
+  let songId = '68791';
+  User.findOne({user_id: 'lc0igz3pzb35ll28mj5ryczar'},
+   { songs: { $elemMatch: { song_id: songId } } },
+  (err, doc) => {
+    if (err) {
+      console.log("Something wrong when updating data!");
+    }
+      console.log(doc.songs[0].ranking);
   });
 }
 
@@ -40,7 +51,5 @@ exports.user_list = function (req, res, next) {
         .exec(function (err, list_users) {
             if (err) { return next(err); }
              res.send(user_list);
-            // Successful, so render.
-        //    res.render('user_list', { title: 'User List', user_list: list_users});
         })
 };

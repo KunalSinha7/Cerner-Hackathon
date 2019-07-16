@@ -11,6 +11,7 @@ router.get("/", (req, res) => {
 
 router.get('/user/create', user_controller.user_create);
 router.get('/user/addSong', user_controller.add_song);
+router.get('/user/getSong', user_controller.get_song);
 router.get('/users', user_controller.user_list);
 
 module.exports = router;
