@@ -1,8 +1,19 @@
 import React from 'react';
 import RatingDropdown from './RatingDropdown';
+import Modal from './Modals';
 import Login from "./Login.js";
 import history from "../history.js";
 import axios from 'axios';
+
+const modalHeader = (
+  <h5>Find a Song</h5>
+);
+
+const modalBody = (
+  <div className="form-group">
+    <input className="form-control" placeholder="Enter Song Title"/>
+  </div>
+);
 
 export default class SongList extends React.Component {
   constructor(props) {
@@ -93,8 +104,26 @@ export default class SongList extends React.Component {
     return (
       <div>
         <div className="row">
-          <div className="d-flex container col-1 justify-content-center">
+          <div className="col-2">
+
+          </div>
+          <div className="col-3 rating-text d-flex container justify-content-center">
+            <div className="d-flex container justify-content-start">
+              <p className="mt-5 mb-5 ml-5 mr-2"> Song Count: {this.state.songList.length} </p>
+              <button className="table-button rounded-pill fa fa-plus mt-5 mb-5" data-toggle="modal" data-target="#searchModal"/>
+            </div>
+          </div>
+          <div className="d-flex container col-2 justify-content-center">
             <h1 className="playlist-header mr-2">Playlist</h1>
+          </div>
+          <div className="col-3 rating-text d-flex container justify-content-center">
+            <div className="d-flex container justify-content-end">
+              <p className="mt-5 mb-5 mr-2">Total Rating: {this.state.total}</p>
+              <button type="submit" className="table-button rounded-pill fa fa-paper-plane mt-5 mb-5 mr-5"/>
+            </div>
+          </div>
+          <div className="col-2">
+
           </div>
         </div>
         <div className="row">
@@ -136,6 +165,7 @@ export default class SongList extends React.Component {
 
           </div>
         </div>
+        <Modal id="searchModal" header={modalHeader} body={modalBody} />
       </div>
     );
   }

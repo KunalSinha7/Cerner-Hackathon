@@ -22,7 +22,7 @@ export default class RatingDropdown extends React.Component {
           <div className="form-row align-items-center">
             <div className="col-auto my-1">
               <label className="mr-sm-2 sr-only" htmlFor="inlineFormCustomSelect">Rating</label>
-              <select className="custom-select mr-sm-2" id="inlineFormCustomSelect" onChange={this.change}>
+              <select className="custom-select select-form mr-sm-2 border-0" onChange={this.change}>
                 <option selected>Rating</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
