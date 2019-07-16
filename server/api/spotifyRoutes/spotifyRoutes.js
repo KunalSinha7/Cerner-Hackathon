@@ -20,7 +20,8 @@ router.post("/getUser", async (req, res) => {
       spotifyId: data.id,
       spotifyUrl: data.href
     };
-    if ( !User.find({user_id: data.id}) ){
+
+    if ( !User.find({ user_id: data.id }) ){
       const user = new User({
         _id : new mongoose.Types.ObjectId,
         user_id : data.id,
@@ -133,6 +134,15 @@ router.post("/addToPlaylist", async (req, res) => {
         element.added_by.id !== playlistOwner
       ) {
         numSongs++;
+        User.findOneAndUpdate(
+          {  user_id: data.owner.id },
+          { $push: { "songs": { "song_id": element.track.id, "ranking": -1 } } },
+          {new: true}, (err, doc) => {
+            if (err) {
+                console.log("Something wrong when updating data!");
+            }
+            console.log(doc);
+          });
       }
       if (numSongs >= 10) {
         console.log("Cannot add any more songs. Reached max limit.")

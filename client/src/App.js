@@ -23,7 +23,7 @@ export default class App extends Component {
           />
           <Route
             exact={false}
-            path="/playlist/:playlistId/:userId/:authToken"
+            path="/playlist/:playlistId/:playlistName/:userId/:ownerId/:authToken"
             component={SongList}
           />
           <Redirect from="*" to="/" />
